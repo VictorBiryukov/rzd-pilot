@@ -1,0 +1,147 @@
+### RootProject section ############################################################################################################ 
+
+fragment RootProjectAttributes on _E_RootProject {
+  id
+  __typename
+  name
+  dateOpen
+}
+
+query searchRootProject {
+  searchRootProject {
+    elems {
+      ...RootProjectAttributes
+    }
+  }
+}
+
+mutation createRootProject($input: _CreateRootProjectInput!) {
+  packet {
+    createRootProject(input: $input) {
+      ...RootProjectAttributes
+    }
+  }
+}
+
+mutation updateRootProject($input: _UpdateRootProjectInput!) {
+  packet {
+    updateRootProject(input: $input) {
+      ...RootProjectAttributes
+    }
+  }
+}
+
+mutation deleteRootProject($id: ID!) {
+  packet {
+    deleteRootProject(id:$id)
+  }
+}
+
+### SubProject section ############################################################################################################ 
+
+fragment SubProjectAttributes on _E_SubProject {
+  id
+  name
+  fullName
+  dateOpen
+}
+
+query searchSubProject($cond: String) {
+  searchSubProject(cond: $cond) {
+    elems {
+      ...SubProjectAttributes
+    }
+  }
+}
+
+fragment SubProjectTreeAttributes on _E_SubProject {
+  ...SubProjectAttributes
+  childs {
+    count
+    elems {
+      ...SubProjectAttributes
+      childs {
+        count
+        elems {
+          ...SubProjectAttributes
+          childs{
+            count
+          }
+        }
+      }
+    }
+  }
+}
+
+query searchSubProjectTree($cond: String) {
+  searchSubProject(cond: $cond) {
+    elems {
+      ...SubProjectTreeAttributes
+    }
+  }
+}
+
+mutation createSubProject($input: _CreateSubProjectInput!) {
+  packet {
+    createSubProject(input: $input) {
+      ...SubProjectAttributes
+    }
+  }
+}
+
+mutation updateSubProject($input: _UpdateSubProjectInput!) {
+  packet {
+    updateSubProject(input: $input) {
+      ...SubProjectAttributes
+    }
+  }
+}
+
+mutation deleteSubProject($id: ID!) {
+  packet {
+    deleteSubProject(id:$id)
+  }
+}
+
+### Risk section ############################################################################################################       
+
+fragment RiskAttributes on _E_Risk {
+  id
+  __typename
+  descr
+  cost
+  probability
+  realized
+}
+
+query searchRisk($cond:String) {
+  searchRisk(cond: $cond) {
+    elems {
+      ...RiskAttributes
+    }
+  }
+}
+
+mutation createRisk($input: _CreateRiskInput!) {
+  packet {
+    createRisk(input: $input) {
+      ...RiskAttributes
+    }
+  }
+}
+
+mutation updateRisk($input: _UpdateRiskInput!) {
+  packet {
+    updateRisk(input: $input) {
+      ...RiskAttributes
+    }
+  }
+}
+
+mutation deleteRisk($id: ID!) {
+  packet {
+    deleteRisk(id:$id)
+  }
+}
+
+

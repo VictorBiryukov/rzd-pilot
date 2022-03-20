@@ -1,0 +1,23 @@
+[
+  {
+    "type": "RiskType",
+    "objects": [
+      {
+        "id": "production",
+        "name": "Производственный"
+      },
+      {
+        "id": "political",
+        "name": "Политический"
+      },
+      {
+        "id": "natural",
+        "name": "Природный"
+      },
+      {
+        "id": "financial",
+        "name": "Финансовый"
+      }
+    ]
+  }
+]

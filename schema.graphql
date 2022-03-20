@@ -1,0 +1,885 @@
+schema {
+  query: _Query
+  mutation: _Mutation
+}
+
+directive @mergeReqSpec(cond: String) on INLINE_FRAGMENT
+
+# java.math.BigDecimal
+scalar BigDecimal
+
+# Byte as Int
+scalar Byte
+
+# Char as Character
+scalar Char
+
+# Long type
+scalar Long
+
+interface Risk {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  probability: BigDecimal
+  realized: Boolean
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  type: String!
+  descr: String
+  subProject(alias: String): SubProject!
+  aggregateRoot(alias: String): RootProject
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface RiskHistory {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysState: Byte
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  sysHistoryTime: _OffsetDateTime
+  type: String!
+  sysHistoryOwner(alias: String): Risk!
+  aggregateRoot(alias: String): RootProject
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface RiskType {
+  id: ID!
+  name: String
+  type: String!
+  aggregateRoot(alias: String): RootDictionary
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface RootDictionary {
+  id: ID!
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface RootProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  countryIsoCode: String
+  type: String!
+  subProjectList(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_SubProject!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+# Short as Int
+scalar Short
+
+interface SubProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  type: String!
+  rootProject(alias: String): RootProject!
+  parent(alias: String): SubProject
+  aggregateRoot(alias: String): RootProject
+  childs(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_SubProject!
+  risk(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Risk!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+scalar _ByteArray
+
+input _CompareRootProjectInput {
+  dateOpen: _Date
+  countryIsoCode: String
+  dateClose: _Date
+  name: String
+  fullName: String
+}
+
+input _CompareSubProjectInput {
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+}
+
+input _CreateRiskInput {
+  descr: String
+  cost: BigDecimal
+  probability: BigDecimal
+  subProject: ID!
+  realized: Boolean
+}
+
+input _CreateRootProjectInput {
+  dateOpen: _Date
+  countryIsoCode: String
+  dateClose: _Date
+  name: String
+  fullName: String
+}
+
+input _CreateSubProjectInput {
+  dateOpen: _Date
+  parent: ID
+  dateClose: _Date
+  name: String
+  fullName: String
+  rootProject: ID!
+}
+
+scalar _Date
+
+scalar _DateTime
+
+type _EC_Risk {
+  elems: [Risk!]!
+  count: Int!
+}
+
+type _EC_RiskHistory {
+  elems: [RiskHistory!]!
+  count: Int!
+}
+
+type _EC_RiskType {
+  elems: [RiskType!]!
+  count: Int!
+}
+
+type _EC_RootDictionary {
+  elems: [RootDictionary!]!
+  count: Int!
+}
+
+type _EC_RootProject {
+  elems: [RootProject!]!
+  count: Int!
+}
+
+type _EC_SubProject {
+  elems: [SubProject!]!
+  count: Int!
+}
+
+type _E_Risk implements _Entity & Risk {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  probability: BigDecimal
+  realized: Boolean
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  type: String!
+  descr: String
+  subProject(alias: String): SubProject!
+  aggregateRoot(alias: String): RootProject
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_RiskHistory implements _Entity & RiskHistory {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysState: Byte
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  sysHistoryTime: _OffsetDateTime
+  type: String!
+  sysHistoryOwner(alias: String): Risk!
+  aggregateRoot(alias: String): RootProject
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_RiskType implements _Entity & RiskType {
+  id: ID!
+  name: String
+  type: String!
+  aggregateRoot(alias: String): RootDictionary
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_RootDictionary implements _Entity & RootDictionary {
+  id: ID!
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_RootProject implements _Entity & RootProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  countryIsoCode: String
+  type: String!
+  subProjectList(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_SubProject!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_SubProject implements _Entity & SubProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  type: String!
+  rootProject(alias: String): RootProject!
+  parent(alias: String): SubProject
+  aggregateRoot(alias: String): RootProject
+  childs(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_SubProject!
+  risk(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Risk!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface _Entity {
+  id: ID!
+}
+
+scalar _Float4
+
+type _HC_Risk {
+  elems: [_H_Risk!]!
+  count: Int!
+}
+
+type _H_Risk {
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysState: Byte
+  sysHistNumber: Long
+  sysHistoryTime: _OffsetDateTime
+  type: String!
+  sysHistoryOwner: String
+  aggregateRoot: String
+}
+
+input _IncBigDecimalValueInput {
+  value: BigDecimal!
+}
+
+input _IncRiskInput {
+  cost: _IncBigDecimalValueInput
+  probability: _IncBigDecimalValueInput
+}
+
+type _MergedEntitiesCollection {
+  elems: [_Entity!]!
+  count: Int!
+}
+
+type _Mutation {
+  packet(aggregateVersion: Long, idempotencePacketId: String): _Packet
+}
+
+scalar _OffsetDateTime
+
+type _Packet {
+  createRootProject(input: _CreateRootProjectInput!): RootProject
+  updateRootProject(
+    input: _UpdateRootProjectInput!
+    compare: _CompareRootProjectInput
+  ): RootProject
+  getRootProject(id: ID!): RootProject
+  deleteRootProject(id: ID!, compare: _CompareRootProjectInput): String
+  createRisk(input: _CreateRiskInput!): Risk
+  updateRisk(input: _UpdateRiskInput!, inc: _IncRiskInput): Risk
+  getRisk(id: ID!): Risk
+  deleteRisk(id: ID!): String
+  createSubProject(input: _CreateSubProjectInput!): SubProject
+  updateSubProject(
+    input: _UpdateSubProjectInput!
+    compare: _CompareSubProjectInput
+  ): SubProject
+  getSubProject(id: ID!): SubProject
+  deleteSubProject(id: ID!, compare: _CompareSubProjectInput): String
+  aggregateVersion: Long
+  isIdempotenceResponse: Boolean
+}
+
+type _Query {
+  merge(
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _MergedEntitiesCollection!
+  searchRiskType(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_RiskType!
+  searchRootProject(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_RootProject!
+  searchSubProject(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_SubProject!
+  searchRisk(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Risk!
+  searchRootDictionary(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_RootDictionary!
+  searchRiskHistory(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_RiskHistory!
+  selectionByRiskType(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_RiskType!
+  selectionByRootProject(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_RootProject!
+  selectionBySubProject(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_SubProject!
+  selectionByRisk(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_Risk!
+  selectionByRootDictionary(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_RootDictionary!
+  selectionByRiskHistory(
+    cond: String
+    group: [String!]
+    groupCond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_RiskHistory!
+  getStateRisk(id: String!, date: _OffsetDateTime!): _S_Risk
+  getStatesRisk(
+    id: String!
+    timeFrom: _OffsetDateTime
+    timeTo: _OffsetDateTime
+    limit: Int
+    offset: Int
+  ): _SC_Risk!
+  getRiskHistory(
+    id: String!
+    timeFrom: _OffsetDateTime
+    timeTo: _OffsetDateTime
+    limit: Int
+    offset: Int
+  ): _HC_Risk!
+}
+
+type _SC_Risk {
+  elems: [_SS_Risk!]!
+  count: Int!
+}
+
+type _SEC_Risk {
+  elems: [_SE_Risk!]!
+  count: Int!
+}
+
+type _SEC_RiskHistory {
+  elems: [_SE_RiskHistory!]!
+  count: Int!
+}
+
+type _SEC_RiskType {
+  elems: [_SE_RiskType!]!
+  count: Int!
+}
+
+type _SEC_RootDictionary {
+  elems: [_SE_RootDictionary!]!
+  count: Int!
+}
+
+type _SEC_RootProject {
+  elems: [_SE_RootProject!]!
+  count: Int!
+}
+
+type _SEC_SubProject {
+  elems: [_SE_SubProject!]!
+  count: Int!
+}
+
+type _SE_Risk {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  probability: BigDecimal
+  realized: Boolean
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  type: String!
+  descr: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_RiskHistory {
+  id: ID!
+  aggVersion: Long!
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysState: Byte
+  sysHistNumber: Long
+  sysLastHistVersion: Long
+  sysHistoryTime: _OffsetDateTime
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_RiskType {
+  id: ID!
+  aggVersion: Long!
+  name: String
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_RootDictionary {
+  id: ID!
+  aggVersion: Long!
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_RootProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  countryIsoCode: String
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_SubProject {
+  id: ID!
+  aggVersion: Long!
+  dateOpen: _Date
+  dateClose: _Date
+  name: String
+  fullName: String
+  chgCnt: Long
+  lastChangeDate: _DateTime
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SS_Risk {
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysState: Byte
+  sysHistNumber: Long
+  sysHistoryTime: _OffsetDateTime
+  type: String!
+  sysHistoryOwner: String
+  aggregateRoot: String
+}
+
+type _S_Risk {
+  cost: BigDecimal
+  sysCostUpdated: Boolean
+  probability: BigDecimal
+  sysProbabilityUpdated: Boolean
+  sysHistNumber: Long
+  type: String!
+  sysHistoryOwner: String
+  aggregateRoot: String
+}
+
+input _SortCriterionSpecification {
+  crit: String!
+  order: _SortOrder! = ASC
+  nullsLast: Boolean
+}
+
+enum _SortOrder {
+  ASC
+  DESC
+}
+
+input _UpdateRiskInput {
+  descr: String
+  cost: BigDecimal
+  probability: BigDecimal
+  subProject: ID
+  realized: Boolean
+  id: ID!
+}
+
+input _UpdateRootProjectInput {
+  dateOpen: _Date
+  countryIsoCode: String
+  dateClose: _Date
+  name: String
+  fullName: String
+  id: ID!
+}
+
+input _UpdateSubProjectInput {
+  dateOpen: _Date
+  parent: ID
+  dateClose: _Date
+  name: String
+  fullName: String
+  rootProject: ID
+  id: ID!
+}
