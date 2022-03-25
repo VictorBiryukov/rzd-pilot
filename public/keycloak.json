@@ -1,0 +1,8 @@
+{
+    "realm": "rzd-pilot",
+    "auth-server-url": "http://46.243.142.150/auth/",
+    "ssl-required": "external",
+    "resource": "rzd-pilot",
+    "public-client": true,
+    "confidential-port": 0
+}

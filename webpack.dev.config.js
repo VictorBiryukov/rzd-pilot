@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const webpack = require('webpack');
 const { env } = require('process');
+const CopyPlugin = require('copy-webpack-plugin');
 require('dotenv').config({ path: './.env' }); 
 
 
@@ -36,8 +37,17 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HotModuleReplacementPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'public',
+                },
+            ]
+        }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "public/index.html"), //we put the file that we created in public folder
+            template: './template/index.html',
+            minify: false,
+            excludeChunks: ['theme-light', 'theme-dark', 'theme-docs'],
         }),
     ],
     resolve: {

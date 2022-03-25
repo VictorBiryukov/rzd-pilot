@@ -5,6 +5,7 @@ fragment RootProjectAttributes on _E_RootProject {
   __typename
   name
   dateOpen
+  maxCost
 }
 
 query searchRootProject {
@@ -41,6 +42,7 @@ mutation deleteRootProject($id: ID!) {
 
 fragment SubProjectAttributes on _E_SubProject {
   id
+  __typename
   name
   fullName
   dateOpen
@@ -81,9 +83,9 @@ query searchSubProjectTree($cond: String) {
   }
 }
 
-mutation createSubProject($input: _CreateSubProjectInput!) {
+mutation createSubProjectBatch($inputList: [_CreateSubProjectInput!]) {
   packet {
-    createSubProject(input: $input) {
+    createSubProjectBatch(inputList: $inputList) {
       ...SubProjectAttributes
     }
   }
@@ -144,4 +146,13 @@ mutation deleteRisk($id: ID!) {
   }
 }
 
+query getStatesRisk($riskId: String!){
+  getStatesRisk(id: $riskId){
+    elems{
+      sysHistoryTime
+      cost
+      probability
+    }
+  }
+}
 

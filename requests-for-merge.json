@@ -1,0 +1,58 @@
+[
+  {
+    "name": "searchRootProject",
+    "body": "query searchRootProject {\n  searchRootProject {\n    elems {\n      ...RootProjectAttributes\n    }\n  }\n}\n    fragment RootProjectAttributes on _E_RootProject {\n  id\n  __typename\n  name\n  dateOpen\n  maxCost\n}"
+  },
+  {
+    "name": "createRootProject",
+    "body": "mutation createRootProject($input: _CreateRootProjectInput!) {\n  packet {\n    createRootProject(input: $input) {\n      ...RootProjectAttributes\n    }\n  }\n}\n    fragment RootProjectAttributes on _E_RootProject {\n  id\n  __typename\n  name\n  dateOpen\n  maxCost\n}"
+  },
+  {
+    "name": "updateRootProject",
+    "body": "mutation updateRootProject($input: _UpdateRootProjectInput!) {\n  packet {\n    updateRootProject(input: $input) {\n      ...RootProjectAttributes\n    }\n  }\n}\n    fragment RootProjectAttributes on _E_RootProject {\n  id\n  __typename\n  name\n  dateOpen\n  maxCost\n}"
+  },
+  {
+    "name": "deleteRootProject",
+    "body": "mutation deleteRootProject($id: ID!) {\n  packet {\n    deleteRootProject(id: $id)\n  }\n}"
+  },
+  {
+    "name": "searchSubProject",
+    "body": "query searchSubProject($cond: String) {\n  searchSubProject(cond: $cond) {\n    elems {\n      ...SubProjectAttributes\n    }\n  }\n}\n    fragment SubProjectAttributes on _E_SubProject {\n  id\n  name\n  fullName\n  dateOpen\n}"
+  },
+  {
+    "name": "searchSubProjectTree",
+    "body": "query searchSubProjectTree($cond: String) {\n  searchSubProject(cond: $cond) {\n    elems {\n      ...SubProjectTreeAttributes\n    }\n  }\n}\n    fragment SubProjectTreeAttributes on _E_SubProject {\n  ...SubProjectAttributes\n  childs {\n    count\n    elems {\n      ...SubProjectAttributes\n      childs {\n        count\n        elems {\n          ...SubProjectAttributes\n          childs {\n            count\n          }\n        }\n      }\n    }\n  }\n}\n    fragment SubProjectAttributes on _E_SubProject {\n  id\n  name\n  fullName\n  dateOpen\n}"
+  },
+  {
+    "name": "createSubProject",
+    "body": "mutation createSubProject($input: _CreateSubProjectInput!) {\n  packet {\n    createSubProject(input: $input) {\n      ...SubProjectAttributes\n    }\n  }\n}\n    fragment SubProjectAttributes on _E_SubProject {\n  id\n  name\n  fullName\n  dateOpen\n}"
+  },
+  {
+    "name": "updateSubProject",
+    "body": "mutation updateSubProject($input: _UpdateSubProjectInput!) {\n  packet {\n    updateSubProject(input: $input) {\n      ...SubProjectAttributes\n    }\n  }\n}\n    fragment SubProjectAttributes on _E_SubProject {\n  id\n  name\n  fullName\n  dateOpen\n}"
+  },
+  {
+    "name": "deleteSubProject",
+    "body": "mutation deleteSubProject($id: ID!) {\n  packet {\n    deleteSubProject(id: $id)\n  }\n}"
+  },
+  {
+    "name": "searchRisk",
+    "body": "query searchRisk($cond: String) {\n  searchRisk(cond: $cond) {\n    elems {\n      ...RiskAttributes\n    }\n  }\n}\n    fragment RiskAttributes on _E_Risk {\n  id\n  __typename\n  descr\n  cost\n  probability\n  realized\n}"
+  },
+  {
+    "name": "createRisk",
+    "body": "mutation createRisk($input: _CreateRiskInput!) {\n  packet {\n    createRisk(input: $input) {\n      ...RiskAttributes\n    }\n  }\n}\n    fragment RiskAttributes on _E_Risk {\n  id\n  __typename\n  descr\n  cost\n  probability\n  realized\n}"
+  },
+  {
+    "name": "updateRisk",
+    "body": "mutation updateRisk($input: _UpdateRiskInput!) {\n  packet {\n    updateRisk(input: $input) {\n      ...RiskAttributes\n    }\n  }\n}\n    fragment RiskAttributes on _E_Risk {\n  id\n  __typename\n  descr\n  cost\n  probability\n  realized\n}"
+  },
+  {
+    "name": "deleteRisk",
+    "body": "mutation deleteRisk($id: ID!) {\n  packet {\n    deleteRisk(id: $id)\n  }\n}"
+  },
+  {
+    "name": "getStatesRisk",
+    "body": "query getStatesRisk($riskId: String!) {\n  getStatesRisk(id: $riskId) {\n    elems {\n      sysHistoryTime\n      cost\n      probability\n    }\n  }\n}"
+  }
+]

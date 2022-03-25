@@ -37,11 +37,12 @@ export type Risk = {
   cost?: Maybe<Scalars['BigDecimal']>;
   probability?: Maybe<Scalars['BigDecimal']>;
   realized?: Maybe<Scalars['Boolean']>;
+  descr?: Maybe<Scalars['String']>;
   sysHistNumber?: Maybe<Scalars['Long']>;
   sysLastHistVersion?: Maybe<Scalars['Long']>;
   type: Scalars['String'];
-  descr?: Maybe<Scalars['String']>;
   subProject: SubProject;
+  riskType?: Maybe<RiskType>;
   aggregateRoot?: Maybe<RootProject>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
@@ -61,6 +62,11 @@ export type Risk = {
 
 
 export type RiskSubProjectArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type RiskRiskTypeArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
@@ -446,6 +452,7 @@ export type RootProject = {
   chgCnt?: Maybe<Scalars['Long']>;
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   countryIsoCode?: Maybe<Scalars['String']>;
+  maxCost?: Maybe<Scalars['BigDecimal']>;
   type: Scalars['String'];
   subProjectList: _Ec_SubProject;
   _getChar?: Maybe<Scalars['Char']>;
@@ -678,6 +685,562 @@ export type SubProject_GetByteArrayArgs = {
   expression: Scalars['String'];
 };
 
+export type SysAdminSettings = {
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  rootSecurity: SysRootSecurity;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type SysAdminSettingsRootSecurityArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysAdminSettingsAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysAdminSettings_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysAdminSettings_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type SysCheckSelect = {
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  conditionValue?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  orderValue?: Maybe<Scalars['Int']>;
+  typeName?: Maybe<Scalars['String']>;
+  operation: SysOperation;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type SysCheckSelectOperationArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysCheckSelectAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysCheckSelect_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysCheckSelect_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type SysOperation = {
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  allowEmptyChecks?: Maybe<Scalars['Boolean']>;
+  body?: Maybe<Scalars['String']>;
+  disableJwtVerification?: Maybe<Scalars['Boolean']>;
+  hashValue?: Maybe<Scalars['String']>;
+  rootSecurity: SysRootSecurity;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  checkSelects: _Ec_SysCheckSelect;
+  paramAdditions: _Ec_SysParamAddition;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type SysOperationRootSecurityArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysOperationAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysOperationCheckSelectsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type SysOperationParamAdditionsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type SysOperation_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysOperation_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type SysParamAddition = {
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  paramAddition?: Maybe<Scalars['String']>;
+  paramName?: Maybe<Scalars['String']>;
+  operation: SysOperation;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type SysParamAdditionOperationArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysParamAdditionAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type SysParamAddition_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysParamAddition_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type SysRootSecurity = {
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  type: Scalars['String'];
+  adminSettings: _Ec_SysAdminSettings;
+  operations: _Ec_SysOperation;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type SysRootSecurityAdminSettingsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type SysRootSecurityOperationsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type SysRootSecurity_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type SysRootSecurity_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
 
 export type _CompareRootProjectInput = {
   dateOpen?: Maybe<Scalars['_Date']>;
@@ -697,6 +1260,7 @@ export type _CompareSubProjectInput = {
 export type _CreateRiskInput = {
   descr?: Maybe<Scalars['String']>;
   cost?: Maybe<Scalars['BigDecimal']>;
+  riskType?: Maybe<Scalars['ID']>;
   probability?: Maybe<Scalars['BigDecimal']>;
   subProject: Scalars['ID'];
   realized?: Maybe<Scalars['Boolean']>;
@@ -708,6 +1272,7 @@ export type _CreateRootProjectInput = {
   dateClose?: Maybe<Scalars['_Date']>;
   name?: Maybe<Scalars['String']>;
   fullName?: Maybe<Scalars['String']>;
+  maxCost?: Maybe<Scalars['BigDecimal']>;
 };
 
 export type _CreateSubProjectInput = {
@@ -720,6 +1285,83 @@ export type _CreateSubProjectInput = {
 };
 
 
+
+export type _Ecm_Risk = {
+  __typename?: '_ECM_Risk';
+  elems: Array<Risk>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_RiskHistory = {
+  __typename?: '_ECM_RiskHistory';
+  elems: Array<RiskHistory>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_RiskType = {
+  __typename?: '_ECM_RiskType';
+  elems: Array<RiskType>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_RootDictionary = {
+  __typename?: '_ECM_RootDictionary';
+  elems: Array<RootDictionary>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_RootProject = {
+  __typename?: '_ECM_RootProject';
+  elems: Array<RootProject>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SubProject = {
+  __typename?: '_ECM_SubProject';
+  elems: Array<SubProject>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SysAdminSettings = {
+  __typename?: '_ECM_SysAdminSettings';
+  elems: Array<SysAdminSettings>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SysCheckSelect = {
+  __typename?: '_ECM_SysCheckSelect';
+  elems: Array<SysCheckSelect>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SysOperation = {
+  __typename?: '_ECM_SysOperation';
+  elems: Array<SysOperation>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SysParamAddition = {
+  __typename?: '_ECM_SysParamAddition';
+  elems: Array<SysParamAddition>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
+
+export type _Ecm_SysRootSecurity = {
+  __typename?: '_ECM_SysRootSecurity';
+  elems: Array<SysRootSecurity>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
+};
 
 export type _Ec_Risk = {
   __typename?: '_EC_Risk';
@@ -757,6 +1399,51 @@ export type _Ec_SubProject = {
   count: Scalars['Int'];
 };
 
+export type _Ec_SysAdminSettings = {
+  __typename?: '_EC_SysAdminSettings';
+  elems: Array<SysAdminSettings>;
+  count: Scalars['Int'];
+};
+
+export type _Ec_SysCheckSelect = {
+  __typename?: '_EC_SysCheckSelect';
+  elems: Array<SysCheckSelect>;
+  count: Scalars['Int'];
+};
+
+export type _Ec_SysOperation = {
+  __typename?: '_EC_SysOperation';
+  elems: Array<SysOperation>;
+  count: Scalars['Int'];
+};
+
+export type _Ec_SysParamAddition = {
+  __typename?: '_EC_SysParamAddition';
+  elems: Array<SysParamAddition>;
+  count: Scalars['Int'];
+};
+
+export type _Ec_SysRootSecurity = {
+  __typename?: '_EC_SysRootSecurity';
+  elems: Array<SysRootSecurity>;
+  count: Scalars['Int'];
+};
+
+export type _Enc_ModelStatus = {
+  __typename?: '_ENC_ModelStatus';
+  elems: Array<_En_ModelStatus>;
+  count: Scalars['Int'];
+};
+
+export enum _En_ModelStatus {
+  New = 'NEW',
+  Implementing = 'IMPLEMENTING',
+  Done = 'DONE',
+  Rollback = 'ROLLBACK',
+  Undone = 'UNDONE',
+  Cancelled = 'CANCELLED'
+}
+
 export type _E_Risk = _Entity & Risk & {
   __typename?: '_E_Risk';
   id: Scalars['ID'];
@@ -766,11 +1453,12 @@ export type _E_Risk = _Entity & Risk & {
   cost?: Maybe<Scalars['BigDecimal']>;
   probability?: Maybe<Scalars['BigDecimal']>;
   realized?: Maybe<Scalars['Boolean']>;
+  descr?: Maybe<Scalars['String']>;
   sysHistNumber?: Maybe<Scalars['Long']>;
   sysLastHistVersion?: Maybe<Scalars['Long']>;
   type: Scalars['String'];
-  descr?: Maybe<Scalars['String']>;
   subProject: SubProject;
+  riskType?: Maybe<RiskType>;
   aggregateRoot?: Maybe<RootProject>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
@@ -790,6 +1478,11 @@ export type _E_Risk = _Entity & Risk & {
 
 
 export type _E_RiskSubProjectArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_RiskRiskTypeArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
@@ -1179,6 +1872,7 @@ export type _E_RootProject = _Entity & RootProject & {
   chgCnt?: Maybe<Scalars['Long']>;
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   countryIsoCode?: Maybe<Scalars['String']>;
+  maxCost?: Maybe<Scalars['BigDecimal']>;
   type: Scalars['String'];
   subProjectList: _Ec_SubProject;
   _getChar?: Maybe<Scalars['Char']>;
@@ -1411,6 +2105,567 @@ export type _E_SubProject_GetByteArrayArgs = {
   expression: Scalars['String'];
 };
 
+export type _E_SysAdminSettings = _Entity & SysAdminSettings & {
+  __typename?: '_E_SysAdminSettings';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  rootSecurity: SysRootSecurity;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _E_SysAdminSettingsRootSecurityArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysAdminSettingsAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysAdminSettings_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysAdminSettings_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _E_SysCheckSelect = _Entity & SysCheckSelect & {
+  __typename?: '_E_SysCheckSelect';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  conditionValue?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  orderValue?: Maybe<Scalars['Int']>;
+  typeName?: Maybe<Scalars['String']>;
+  operation: SysOperation;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _E_SysCheckSelectOperationArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysCheckSelectAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysCheckSelect_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysCheckSelect_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _E_SysOperation = _Entity & SysOperation & {
+  __typename?: '_E_SysOperation';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  allowEmptyChecks?: Maybe<Scalars['Boolean']>;
+  body?: Maybe<Scalars['String']>;
+  disableJwtVerification?: Maybe<Scalars['Boolean']>;
+  hashValue?: Maybe<Scalars['String']>;
+  rootSecurity: SysRootSecurity;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  checkSelects: _Ec_SysCheckSelect;
+  paramAdditions: _Ec_SysParamAddition;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _E_SysOperationRootSecurityArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysOperationAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysOperationCheckSelectsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _E_SysOperationParamAdditionsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _E_SysOperation_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysOperation_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _E_SysParamAddition = _Entity & SysParamAddition & {
+  __typename?: '_E_SysParamAddition';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  paramAddition?: Maybe<Scalars['String']>;
+  paramName?: Maybe<Scalars['String']>;
+  operation: SysOperation;
+  aggregateRoot?: Maybe<SysRootSecurity>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _E_SysParamAdditionOperationArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysParamAdditionAggregateRootArgs = {
+  alias?: Maybe<Scalars['String']>;
+};
+
+
+export type _E_SysParamAddition_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysParamAddition_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _E_SysRootSecurity = _Entity & SysRootSecurity & {
+  __typename?: '_E_SysRootSecurity';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  type: Scalars['String'];
+  adminSettings: _Ec_SysAdminSettings;
+  operations: _Ec_SysOperation;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _E_SysRootSecurityAdminSettingsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _E_SysRootSecurityOperationsArgs = {
+  elemAlias?: Maybe<Scalars['String']>;
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _E_SysRootSecurity_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _E_SysRootSecurity_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
 export type _Entity = {
   id: Scalars['ID'];
 };
@@ -1445,10 +2700,21 @@ export type _IncRiskInput = {
   probability?: Maybe<_IncBigDecimalValueInput>;
 };
 
+export type _IncRootProjectInput = {
+  maxCost?: Maybe<_IncBigDecimalValueInput>;
+};
+
 export type _MergedEntitiesCollection = {
   __typename?: '_MergedEntitiesCollection';
   elems: Array<_Entity>;
   count: Scalars['Int'];
+};
+
+export type _MultiMergedEntitiesCollection = {
+  __typename?: '_MultiMergedEntitiesCollection';
+  elems: Array<_Entity>;
+  count: Scalars['Int'];
+  ctx?: Maybe<Scalars['String']>;
 };
 
 export type _Mutation = {
@@ -1490,6 +2756,7 @@ export type _PacketCreateRootProjectArgs = {
 export type _PacketUpdateRootProjectArgs = {
   input: _UpdateRootProjectInput;
   compare?: Maybe<_CompareRootProjectInput>;
+  inc?: Maybe<_IncRootProjectInput>;
 };
 
 
@@ -1549,17 +2816,40 @@ export type _PacketDeleteSubProjectArgs = {
 export type _Query = {
   __typename?: '_Query';
   merge: _MergedEntitiesCollection;
+  multimerge: _MultiMergedEntitiesCollection;
+  resolveReferences: Array<_Reference>;
   searchRiskType: _Ec_RiskType;
+  multisearchRiskType: _Ecm_RiskType;
   searchRootProject: _Ec_RootProject;
+  multisearchRootProject: _Ecm_RootProject;
   searchSubProject: _Ec_SubProject;
+  multisearchSubProject: _Ecm_SubProject;
   searchRisk: _Ec_Risk;
+  multisearchRisk: _Ecm_Risk;
   searchRootDictionary: _Ec_RootDictionary;
+  multisearchRootDictionary: _Ecm_RootDictionary;
+  searchSysRootSecurity: _Ec_SysRootSecurity;
+  multisearchSysRootSecurity: _Ecm_SysRootSecurity;
+  searchSysAdminSettings: _Ec_SysAdminSettings;
+  multisearchSysAdminSettings: _Ecm_SysAdminSettings;
+  searchSysOperation: _Ec_SysOperation;
+  multisearchSysOperation: _Ecm_SysOperation;
+  searchSysCheckSelect: _Ec_SysCheckSelect;
+  multisearchSysCheckSelect: _Ecm_SysCheckSelect;
+  searchSysParamAddition: _Ec_SysParamAddition;
+  multisearchSysParamAddition: _Ecm_SysParamAddition;
   searchRiskHistory: _Ec_RiskHistory;
+  multisearchRiskHistory: _Ecm_RiskHistory;
   selectionByRiskType: _Sec_RiskType;
   selectionByRootProject: _Sec_RootProject;
   selectionBySubProject: _Sec_SubProject;
   selectionByRisk: _Sec_Risk;
   selectionByRootDictionary: _Sec_RootDictionary;
+  selectionBySysRootSecurity: _Sec_SysRootSecurity;
+  selectionBySysAdminSettings: _Sec_SysAdminSettings;
+  selectionBySysOperation: _Sec_SysOperation;
+  selectionBySysCheckSelect: _Sec_SysCheckSelect;
+  selectionBySysParamAddition: _Sec_SysParamAddition;
   selectionByRiskHistory: _Sec_RiskHistory;
   getStateRisk?: Maybe<_S_Risk>;
   getStatesRisk: _Sc_Risk;
@@ -1574,11 +2864,34 @@ export type _QueryMergeArgs = {
 };
 
 
+export type _QueryMultimergeArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QueryResolveReferencesArgs = {
+  referenceType: Scalars['String'];
+  ids: Array<Scalars['ID']>;
+};
+
+
 export type _QuerySearchRiskTypeArgs = {
   cond?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchRiskTypeArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
 };
 
 
@@ -1590,11 +2903,29 @@ export type _QuerySearchRootProjectArgs = {
 };
 
 
+export type _QueryMultisearchRootProjectArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
 export type _QuerySearchSubProjectArgs = {
   cond?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSubProjectArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
 };
 
 
@@ -1606,6 +2937,15 @@ export type _QuerySearchRiskArgs = {
 };
 
 
+export type _QueryMultisearchRiskArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
 export type _QuerySearchRootDictionaryArgs = {
   cond?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
@@ -1614,11 +2954,114 @@ export type _QuerySearchRootDictionaryArgs = {
 };
 
 
+export type _QueryMultisearchRootDictionaryArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QuerySearchSysRootSecurityArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSysRootSecurityArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QuerySearchSysAdminSettingsArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSysAdminSettingsArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QuerySearchSysOperationArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSysOperationArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QuerySearchSysCheckSelectArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSysCheckSelectArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
+export type _QuerySearchSysParamAdditionArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchSysParamAdditionArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
+};
+
+
 export type _QuerySearchRiskHistoryArgs = {
   cond?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QueryMultisearchRiskHistoryArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  ctx?: Maybe<Scalars['String']>;
 };
 
 
@@ -1677,6 +3120,61 @@ export type _QuerySelectionByRootDictionaryArgs = {
 };
 
 
+export type _QuerySelectionBySysRootSecurityArgs = {
+  cond?: Maybe<Scalars['String']>;
+  group?: Maybe<Array<Scalars['String']>>;
+  groupCond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type _QuerySelectionBySysAdminSettingsArgs = {
+  cond?: Maybe<Scalars['String']>;
+  group?: Maybe<Array<Scalars['String']>>;
+  groupCond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type _QuerySelectionBySysOperationArgs = {
+  cond?: Maybe<Scalars['String']>;
+  group?: Maybe<Array<Scalars['String']>>;
+  groupCond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type _QuerySelectionBySysCheckSelectArgs = {
+  cond?: Maybe<Scalars['String']>;
+  group?: Maybe<Array<Scalars['String']>>;
+  groupCond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type _QuerySelectionBySysParamAdditionArgs = {
+  cond?: Maybe<Scalars['String']>;
+  group?: Maybe<Array<Scalars['String']>>;
+  groupCond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
 export type _QuerySelectionByRiskHistoryArgs = {
   cond?: Maybe<Scalars['String']>;
   group?: Maybe<Array<Scalars['String']>>;
@@ -1709,6 +3207,76 @@ export type _QueryGetRiskHistoryArgs = {
   timeTo?: Maybe<Scalars['_OffsetDateTime']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
+};
+
+export type _R_Risk = _Reference & {
+  __typename?: '_R_Risk';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<Risk>;
+};
+
+export type _R_RiskHistory = _Reference & {
+  __typename?: '_R_RiskHistory';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<RiskHistory>;
+};
+
+export type _R_RiskType = _Reference & {
+  __typename?: '_R_RiskType';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<RiskType>;
+};
+
+export type _R_RootDictionary = _Reference & {
+  __typename?: '_R_RootDictionary';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<RootDictionary>;
+};
+
+export type _R_RootProject = _Reference & {
+  __typename?: '_R_RootProject';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<RootProject>;
+};
+
+export type _R_SubProject = _Reference & {
+  __typename?: '_R_SubProject';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SubProject>;
+};
+
+export type _R_SysAdminSettings = _Reference & {
+  __typename?: '_R_SysAdminSettings';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SysAdminSettings>;
+};
+
+export type _R_SysCheckSelect = _Reference & {
+  __typename?: '_R_SysCheckSelect';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SysCheckSelect>;
+};
+
+export type _R_SysOperation = _Reference & {
+  __typename?: '_R_SysOperation';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SysOperation>;
+};
+
+export type _R_SysParamAddition = _Reference & {
+  __typename?: '_R_SysParamAddition';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SysParamAddition>;
+};
+
+export type _R_SysRootSecurity = _Reference & {
+  __typename?: '_R_SysRootSecurity';
+  entityId?: Maybe<Scalars['String']>;
+  entity?: Maybe<SysRootSecurity>;
+};
+
+export type _Reference = {
+  entityId?: Maybe<Scalars['String']>;
 };
 
 export type _Sc_Risk = {
@@ -1753,6 +3321,36 @@ export type _Sec_SubProject = {
   count: Scalars['Int'];
 };
 
+export type _Sec_SysAdminSettings = {
+  __typename?: '_SEC_SysAdminSettings';
+  elems: Array<_Se_SysAdminSettings>;
+  count: Scalars['Int'];
+};
+
+export type _Sec_SysCheckSelect = {
+  __typename?: '_SEC_SysCheckSelect';
+  elems: Array<_Se_SysCheckSelect>;
+  count: Scalars['Int'];
+};
+
+export type _Sec_SysOperation = {
+  __typename?: '_SEC_SysOperation';
+  elems: Array<_Se_SysOperation>;
+  count: Scalars['Int'];
+};
+
+export type _Sec_SysParamAddition = {
+  __typename?: '_SEC_SysParamAddition';
+  elems: Array<_Se_SysParamAddition>;
+  count: Scalars['Int'];
+};
+
+export type _Sec_SysRootSecurity = {
+  __typename?: '_SEC_SysRootSecurity';
+  elems: Array<_Se_SysRootSecurity>;
+  count: Scalars['Int'];
+};
+
 export type _Se_Risk = {
   __typename?: '_SE_Risk';
   id: Scalars['ID'];
@@ -1762,10 +3360,10 @@ export type _Se_Risk = {
   cost?: Maybe<Scalars['BigDecimal']>;
   probability?: Maybe<Scalars['BigDecimal']>;
   realized?: Maybe<Scalars['Boolean']>;
+  descr?: Maybe<Scalars['String']>;
   sysHistNumber?: Maybe<Scalars['Long']>;
   sysLastHistVersion?: Maybe<Scalars['Long']>;
   type: Scalars['String'];
-  descr?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -2147,6 +3745,7 @@ export type _Se_RootProject = {
   chgCnt?: Maybe<Scalars['Long']>;
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   countryIsoCode?: Maybe<Scalars['String']>;
+  maxCost?: Maybe<Scalars['BigDecimal']>;
   type: Scalars['String'];
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
@@ -2331,6 +3930,479 @@ export type _Se_SubProject_GetByteArrayArgs = {
   expression: Scalars['String'];
 };
 
+export type _Se_SysAdminSettings = {
+  __typename?: '_SE_SysAdminSettings';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _Se_SysAdminSettings_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysAdminSettings_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _Se_SysCheckSelect = {
+  __typename?: '_SE_SysCheckSelect';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  conditionValue?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  orderValue?: Maybe<Scalars['Int']>;
+  typeName?: Maybe<Scalars['String']>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _Se_SysCheckSelect_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysCheckSelect_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _Se_SysOperation = {
+  __typename?: '_SE_SysOperation';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  allowEmptyChecks?: Maybe<Scalars['Boolean']>;
+  body?: Maybe<Scalars['String']>;
+  disableJwtVerification?: Maybe<Scalars['Boolean']>;
+  hashValue?: Maybe<Scalars['String']>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _Se_SysOperation_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysOperation_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _Se_SysParamAddition = {
+  __typename?: '_SE_SysParamAddition';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  paramAddition?: Maybe<Scalars['String']>;
+  paramName?: Maybe<Scalars['String']>;
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _Se_SysParamAddition_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysParamAddition_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
+export type _Se_SysRootSecurity = {
+  __typename?: '_SE_SysRootSecurity';
+  id: Scalars['ID'];
+  aggVersion: Scalars['Long'];
+  chgCnt?: Maybe<Scalars['Long']>;
+  lastChangeDate?: Maybe<Scalars['_DateTime']>;
+  type: Scalars['String'];
+  _getChar?: Maybe<Scalars['Char']>;
+  _getString?: Maybe<Scalars['String']>;
+  _getByte?: Maybe<Scalars['Byte']>;
+  _getShort?: Maybe<Scalars['Short']>;
+  _getInt?: Maybe<Scalars['Int']>;
+  _getLong?: Maybe<Scalars['Long']>;
+  _getFloat?: Maybe<Scalars['_Float4']>;
+  _getDouble?: Maybe<Scalars['Float']>;
+  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
+  _getDate?: Maybe<Scalars['_Date']>;
+  _getDateTime?: Maybe<Scalars['_DateTime']>;
+  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
+  _getBoolean?: Maybe<Scalars['Boolean']>;
+  _getByteArray?: Maybe<Scalars['_ByteArray']>;
+};
+
+
+export type _Se_SysRootSecurity_GetCharArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetStringArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetByteArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetShortArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetIntArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetLongArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetFloatArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetDoubleArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetBigDecimalArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetDateArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetOffsetDateTimeArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetBooleanArgs = {
+  expression: Scalars['String'];
+};
+
+
+export type _Se_SysRootSecurity_GetByteArrayArgs = {
+  expression: Scalars['String'];
+};
+
 export type _Ss_Risk = {
   __typename?: '_SS_Risk';
   cost?: Maybe<Scalars['BigDecimal']>;
@@ -2371,6 +4443,7 @@ export enum _SortOrder {
 export type _UpdateRiskInput = {
   descr?: Maybe<Scalars['String']>;
   cost?: Maybe<Scalars['BigDecimal']>;
+  riskType?: Maybe<Scalars['ID']>;
   probability?: Maybe<Scalars['BigDecimal']>;
   subProject?: Maybe<Scalars['ID']>;
   realized?: Maybe<Scalars['Boolean']>;
@@ -2383,6 +4456,7 @@ export type _UpdateRootProjectInput = {
   dateClose?: Maybe<Scalars['_Date']>;
   name?: Maybe<Scalars['String']>;
   fullName?: Maybe<Scalars['String']>;
+  maxCost?: Maybe<Scalars['BigDecimal']>;
   id: Scalars['ID'];
 };
 
@@ -2398,7 +4472,7 @@ export type _UpdateSubProjectInput = {
 
 export type RootProjectAttributesFragment = (
   { __typename: '_E_RootProject' }
-  & Pick<_E_RootProject, 'id' | 'name' | 'dateOpen'>
+  & Pick<_E_RootProject, 'id' | 'name' | 'dateOpen' | 'maxCost'>
 );
 
 export type SearchRootProjectQueryVariables = Exact<{ [key: string]: never; }>;
@@ -2461,7 +4535,7 @@ export type DeleteRootProjectMutation = (
 );
 
 export type SubProjectAttributesFragment = (
-  { __typename?: '_E_SubProject' }
+  { __typename: '_E_SubProject' }
   & Pick<_E_SubProject, 'id' | 'name' | 'fullName' | 'dateOpen'>
 );
 
@@ -2633,17 +4707,35 @@ export type DeleteRiskMutation = (
   )> }
 );
 
+export type GetStatesRiskQueryVariables = Exact<{
+  riskId: Scalars['String'];
+}>;
+
+
+export type GetStatesRiskQuery = (
+  { __typename?: '_Query' }
+  & { getStatesRisk: (
+    { __typename?: '_SC_Risk' }
+    & { elems: Array<(
+      { __typename?: '_SS_Risk' }
+      & Pick<_Ss_Risk, 'sysHistoryTime' | 'cost' | 'probability'>
+    )> }
+  ) }
+);
+
 export const RootProjectAttributesFragmentDoc = gql`
     fragment RootProjectAttributes on _E_RootProject {
   id
   __typename
   name
   dateOpen
+  maxCost
 }
     `;
 export const SubProjectAttributesFragmentDoc = gql`
     fragment SubProjectAttributes on _E_SubProject {
   id
+  __typename
   name
   fullName
   dateOpen
@@ -3135,3 +5227,42 @@ export function useDeleteRiskMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteRiskMutationHookResult = ReturnType<typeof useDeleteRiskMutation>;
 export type DeleteRiskMutationResult = Apollo.MutationResult<DeleteRiskMutation>;
 export type DeleteRiskMutationOptions = Apollo.BaseMutationOptions<DeleteRiskMutation, DeleteRiskMutationVariables>;
+export const GetStatesRiskDocument = gql`
+    query getStatesRisk($riskId: String!) {
+  getStatesRisk(id: $riskId) {
+    elems {
+      sysHistoryTime
+      cost
+      probability
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetStatesRiskQuery__
+ *
+ * To run a query within a React component, call `useGetStatesRiskQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStatesRiskQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStatesRiskQuery({
+ *   variables: {
+ *      riskId: // value for 'riskId'
+ *   },
+ * });
+ */
+export function useGetStatesRiskQuery(baseOptions: Apollo.QueryHookOptions<GetStatesRiskQuery, GetStatesRiskQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetStatesRiskQuery, GetStatesRiskQueryVariables>(GetStatesRiskDocument, options);
+      }
+export function useGetStatesRiskLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStatesRiskQuery, GetStatesRiskQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetStatesRiskQuery, GetStatesRiskQueryVariables>(GetStatesRiskDocument, options);
+        }
+export type GetStatesRiskQueryHookResult = ReturnType<typeof useGetStatesRiskQuery>;
+export type GetStatesRiskLazyQueryHookResult = ReturnType<typeof useGetStatesRiskLazyQuery>;
+export type GetStatesRiskQueryResult = Apollo.QueryResult<GetStatesRiskQuery, GetStatesRiskQueryVariables>;

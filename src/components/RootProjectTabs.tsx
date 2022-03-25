@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react'
-import { Button, DatePicker, Form, Input, Modal, Spin, Tabs } from 'antd'
+import { Button, Col, DatePicker, Form, Input, InputNumber, List, Modal, Row, Space, Spin, Tabs } from 'antd'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import moment from 'moment';
 
 import { useSearchRootProjectQuery, SearchRootProjectDocument, RootProjectAttributesFragment, useCreateRootProjectMutation, useUpdateRootProjectMutation, useDeleteRootProjectMutation, _UpdateRootProjectInput } from '../__generate/graphql-frontend'
-import { SubProjectList } from './SubProjectList'
 import { SubProjectTree } from './SubProjectTree'
+import { RiskWarmMap } from './RiskWarmMap'
 
 const { TabPane } = Tabs
 
@@ -44,36 +45,43 @@ export const RootProjectTabs: FC = () => {
             list?.map(elem => {
                 return (
                     <TabPane key={elem.id ?? ""} tab={elem.name}>
-                        {elem.dateOpen}<p />
-                        <Button style={{ margin: "2px" }}
-                            onClick={() => {
-                                setInputParameters(mapToInput(elem))
-                                setShowForm(ShowForm.Update)
-                            }}
-                        >Edit rootProject</Button>
-                        <Button style={{ margin: "2px" }}
-                            key={elem.id ?? ""}
-                            onClick={(e) => {
-                                deleteRootProjectMutation({
-                                    variables: {
-                                        id: elem.id
-                                    },
-                                    update: (store) => {
-                                        store.writeQuery({
-                                            query: SearchRootProjectDocument,
-                                            data: {
-                                                searchRootProject: {
-                                                    elems: rootProjectList!.filter(x => x.id !== elem.id)
+                        <Space wrap>
+                            <Button
+                                onClick={() => {
+                                    setInputParameters(mapToInput(elem))
+                                    setShowForm(ShowForm.Update)
+                                }}
+                            ><EditOutlined /></Button>
+                            <Button
+                                key={elem.id ?? ""}
+                                onClick={(e) => {
+                                    deleteRootProjectMutation({
+                                        variables: {
+                                            id: elem.id
+                                        },
+                                        update: (store) => {
+                                            store.writeQuery({
+                                                query: SearchRootProjectDocument,
+                                                data: {
+                                                    searchRootProject: {
+                                                        elems: rootProjectList!.filter(x => x.id !== elem.id)
+                                                    }
                                                 }
-                                            }
-                                        })
-                                    }
-                                })
-                            }}
-                        >Delete rootProject</Button>
-                        <p />
-                        {/* <SubProjectList rootProjectId={elem.id} /> */}
+                                            })
+                                        }
+                                    })
+                                }}
+                            ><DeleteOutlined /></Button>
+                            {"Максимальная стоимость: " + elem.maxCost}
+                        </Space><p />
                         <SubProjectTree rootProjectId={elem.id} />
+                        {/* <Row>
+                            <Col span={4}></Col>
+                            <Col span={16} style={{ margin: '5px' }}> */}
+                                <RiskWarmMap rootProjectId={elem.id} maxCost={elem.maxCost ?? 0} />
+                            {/* </Col>
+                            <Col span={4}></Col>
+                        </Row> */}
                     </TabPane>
                 )
             })
@@ -85,13 +93,20 @@ export const RootProjectTabs: FC = () => {
 
     return (
         <>
-            <Button style={{ margin: "2px" }}
-                onClick={() => {
-                    setInputParameters({})
-                    setShowForm(ShowForm.Create)
-                }}>
-                Add new rootProject
-            </Button>
+            <Row>
+                <Col span={10}></Col>
+                <Col span={4}>
+                    <Button type='primary' style={{ margin: "2px" }}
+                        onClick={() => {
+                            setInputParameters({})
+                            setShowForm(ShowForm.Create)
+                        }}>
+                        Добавить корневой проект
+                    </Button>
+                </Col>
+                <Col span={10}></Col>
+            </Row>
+
             <Modal visible={showForm != ShowForm.None}
                 onCancel={() => setShowForm(ShowForm.None)}
                 onOk={() => {
@@ -120,19 +135,30 @@ export const RootProjectTabs: FC = () => {
             >
                 <Form>
                     <Form.Item>
-                        <Input placeholder="Name"
+                        <Input placeholder="Наименование"
                             value={inputParameters.name!}
                             onChange={e => changeInputParameters({ name: e.target.value })}
                         />
                     </Form.Item>
                     <Form.Item>
-                        <DatePicker placeholder="RootProject Date"
+                        <DatePicker placeholder="Дата открытия"
                             //defaultValue={moment()}
                             value={inputParameters.dateOpen ? moment(inputParameters.dateOpen, "YYYY-MM-DD") : null}
                             //value={inputParameters.dateOpen}
                             onChange={moment => changeInputParameters({ dateOpen: moment?.format("YYYY-MM-DD") })}
                             format="YYYY-MM-DD"
 
+                        />
+                    </Form.Item>
+                    <Form.Item extra={"Максимальная стоимость"}>
+                        <InputNumber<string>
+                            value={inputParameters.maxCost!}
+                            onChange={value => changeInputParameters({ maxCost: value })}
+                            //       defaultValue="0"
+                            min="0"
+                            max="999999999999"
+                            step="100000"
+                            stringMode
                         />
                     </Form.Item>
                 </Form>

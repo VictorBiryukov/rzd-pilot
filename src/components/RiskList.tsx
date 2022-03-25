@@ -1,19 +1,30 @@
 import React, { FC, useState } from 'react'
 
-import { Button, Form, Input, InputNumber, Modal, Select, Spin, Table } from 'antd'
+import { Tag, Form, Input, InputNumber, Modal, Spin, Table, Col, Row } from 'antd'
+import { EditOutlined, PlusOutlined, DeleteOutlined, HistoryOutlined } from '@ant-design/icons'
 
 import { useSearchRiskQuery, SearchRiskDocument, RiskAttributesFragment, useCreateRiskMutation, useUpdateRiskMutation, useDeleteRiskMutation, _UpdateRiskInput } from '../__generate/graphql-frontend'
 
-const { Option } = Select
+import { RiskHistoryList } from './RiskHistoryList'
 
 const columns = [
     {
-        title: "Descr",
+        title: "Описание",
         key: 'descr',
         dataIndex: 'descr',
     },
     {
-        title: "Action",
+        title: "Стоимость",
+        key: 'cost',
+        dataIndex: 'cost',
+    },
+    {
+        title: "Вероятность",
+        key: 'probability',
+        dataIndex: 'probability',
+    },
+    {
+        title: "",
         key: 'action',
         dataIndex: 'action',
     },
@@ -42,6 +53,8 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
     const [showForm, setShowForm] = useState<ShowForm>(ShowForm.None)
     const [inputParameters, setInputParameters] = useState<InputParameters>({})
 
+    const [selectedRiskId, setSelectedRiskId] = useState<string>()
+
     const { data, loading, error } = useSearchRiskQuery({
         variables: {
             cond: "it.subProject.$id == '" + subProjectId + "'"
@@ -64,16 +77,18 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
                 return {
                     key: elem.id ?? "",
                     descr: elem.descr,
+                    cost: elem.cost,
+                    probability: elem.probability,
                     action: (<>
-                        <Button style={{ margin: "2px" }}
+                        <Tag style={{ margin: "2px" }}
                             key={elem.id}
                             onClick={() => {
                                 setInputParameters(mapToInput(elem))
                                 setShowForm(ShowForm.Update)
                             }}
-                        >Edit
-                        </Button>
-                        <Button style={{ margin: "2px" }}
+                        ><EditOutlined />
+                        </Tag>
+                        <Tag style={{ margin: "2px" }}
                             onClick={() => {
                                 deleteRiskMutation({
                                     variables: {
@@ -92,11 +107,19 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
                                                 }
                                             }
                                         })
-                                    }
+                                    },
+                                    refetchQueries:["getStatesRisk"]
                                 })
                             }}
-                        >Delete
-                        </Button>
+                        ><DeleteOutlined />
+                        </Tag>
+                        <Tag style={{ margin: "2px" }}
+                            key={elem.id}
+                            onClick={() => {
+                                setSelectedRiskId(elem.id)
+                            }}
+                        ><HistoryOutlined />
+                        </Tag>
                     </>
                     )
                 }
@@ -109,13 +132,13 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
 
     return (
         <>{subProjectId && <>
-            <Button type="primary" style={{ margin: "2px" }}
+            <Tag style={{ margin: "2px" }}
                 onClick={() => {
-                    setInputParameters({ subProject: subProjectId })
+                    setInputParameters({ subProject: subProjectId, cost: 0, probability: 1 })
                     setShowForm(ShowForm.Create)
                 }}>
-                Add new risk
-            </Button>
+                <PlusOutlined />
+            </Tag>
             <Modal visible={showForm != ShowForm.None}
                 onCancel={() => setShowForm(ShowForm.None)}
                 onOk={() => {
@@ -124,50 +147,38 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
                             variables: {
                                 input: Object.assign(inputParameters)
                             },
-                            update: (store, result) => {
-                                // rewrite Apollo cache for search query after new element create
-                                store.writeQuery({
-                                    query: SearchRiskDocument,
-                                    variables: {
-                                        cond: "it.subProject.$id == '" + subProjectId + "'"
-                                    },
-                                    data: {
-                                        searchRisk: {
-                                            elems: [, ...riskList!, result.data?.packet?.createRisk]
-                                        }
-                                    }
-                                })
-                            }
+                            refetchQueries: ["searchRisk","getStatesRisk"]
                         })
                     } else if (showForm == ShowForm.Update) {
-                        updateRiskMutation({ variables: { input: Object.assign(inputParameters) as _UpdateRiskInput } })
+                        updateRiskMutation({ 
+                            variables: { input: Object.assign(inputParameters) as _UpdateRiskInput },
+                            refetchQueries: ["getStatesRisk"]
+                        })
                     }
                     setShowForm(ShowForm.None)
                 }}
             >
                 <Form>
                     <Form.Item>
-                        <Input placeholder="Descr"
+                        <Input placeholder="Описание"
                             value={inputParameters.descr!}
                             onChange={e => changeInputParameters({ descr: e.target.value })}
                         />
                     </Form.Item>
-                    <Form.Item extra={"Cost"}>
-                        <InputNumber<string> placeholder="Cost"
+                    <Form.Item extra={"Стоимость"}>
+                        <InputNumber<string>
                             value={inputParameters.cost!}
                             onChange={value => changeInputParameters({ cost: value })}
-                            defaultValue="0"
                             min="0"
                             max="999999999999"
                             step="100000"
                             stringMode
                         />
                     </Form.Item>
-                    <Form.Item extra={"Probability"}>
-                        <InputNumber<string> placeholder="Probability"
+                    <Form.Item extra={"Вероятность"}>
+                        <InputNumber<string>
                             value={inputParameters.probability!}
                             onChange={value => changeInputParameters({ probability: value })}
-                            defaultValue="1"
                             min="0"
                             max="1"
                             step="0.01"
@@ -176,15 +187,21 @@ export const RiskList: FC<RiskListProps> = ({ subProjectId }) => {
                     </Form.Item>
                 </Form>
             </Modal>
+
             <Table
                 columns={columns}
                 dataSource={mapToView(riskList)}
             />
+
+            <Modal visible={selectedRiskId ? true : false}
+                cancelText='Закрыть'
+                onCancel={() => { setSelectedRiskId(undefined) }}
+                footer={null}
+            >
+                <RiskHistoryList riskId={selectedRiskId!} />
+            </Modal >
+
         </>}</>
     )
-
-
-
-
 }
 

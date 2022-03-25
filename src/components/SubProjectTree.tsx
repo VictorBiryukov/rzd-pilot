@@ -1,26 +1,13 @@
 import React, { FC, useState } from 'react'
 
-import { Button, Form, Input, Modal, Row, Col, Select, Spin, Tag, Tree } from 'antd'
-import { EditOutlined, PlusOutlined } from '@ant-design/icons'
+import { Form, Input, Modal, Row, Col, Spin, Tag, Tree } from 'antd'
+import { EditOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
-import { useSearchSubProjectTreeQuery, SearchSubProjectTreeDocument, SubProjectTreeAttributesFragment, useCreateSubProjectMutation, useUpdateSubProjectMutation, useDeleteSubProjectMutation, _CreateSubProjectInput } from '../__generate/graphql-frontend'
+import { useSearchSubProjectTreeQuery, SubProjectTreeAttributesFragment, useCreateSubProjectMutation, useUpdateSubProjectMutation, useDeleteSubProjectMutation, _CreateSubProjectInput } from '../__generate/graphql-frontend'
 import { DataNode } from 'antd/lib/tree'
 import { RiskList } from './RiskList'
 
-const { Option } = Select
 
-const columns = [
-    {
-        title: "Name",
-        key: 'name',
-        dataIndex: 'name',
-    },
-    {
-        title: "Action",
-        key: 'action',
-        dataIndex: 'action',
-    },
-]
 
 enum ShowForm {
     None,
@@ -47,6 +34,7 @@ export const SubProjectTree: FC<SubProjectTreeProps> = ({ rootProjectId }) => {
     const [inputParameters, setInputParameters] = useState<InputParameters>({})
 
     const [selectedSubProjectId, setSelectedSubProjectId] = useState<string>()
+
 
     const { data, loading, error } = useSearchSubProjectTreeQuery({
         variables: {
@@ -83,9 +71,20 @@ export const SubProjectTree: FC<SubProjectTreeProps> = ({ rootProjectId }) => {
                             <Col>
                                 <Tag>
                                     <EditOutlined
-                                        onClick={x => {
+                                        onClick={() => {
                                             setInputParameters(Object.assign(mapToInput(elem)))
                                             setShowForm(ShowForm.Update)
+                                        }} />
+                                </Tag>
+                            </Col>
+                            <Col>
+                                <Tag>
+                                    <DeleteOutlined
+                                        onClick={() => {
+                                            deleteSubProjectMutation({
+                                                variables:{ id: elem.id},
+                                                refetchQueries:["searchSubProjectTree"]
+                                            })
                                         }} />
                                 </Tag>
                             </Col>
@@ -142,7 +141,7 @@ export const SubProjectTree: FC<SubProjectTreeProps> = ({ rootProjectId }) => {
             >
                 <Form>
                     <Form.Item>
-                        <Input placeholder="Name"
+                        <Input placeholder="Наименование"
                             value={inputParameters.name!}
                             onChange={e => changeInputParameters({ name: e.target.value })}
                         />
@@ -150,16 +149,15 @@ export const SubProjectTree: FC<SubProjectTreeProps> = ({ rootProjectId }) => {
                 </Form>
             </Modal>
             <Row>
-                <Col span={8} >
+                <Col span={12} >
                     <Tree
                         treeData={mapToTree(subProjectTree)}
                     ></Tree>
                 </Col>
-                <Col span={16}>
+                <Col span={10}>
                     <RiskList subProjectId={selectedSubProjectId!} />
                 </Col>
             </Row>
-
         </>
     )
 
